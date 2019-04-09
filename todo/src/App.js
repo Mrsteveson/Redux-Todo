@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addTodo } from './actions';
+import { addTodo, deleteTodo } from './actions';
 
 import TodoForm from './components/TodoForm';
 import Todos from './components/Todos';
@@ -27,6 +27,9 @@ class App extends React.Component {
     });
   }
 
+  deleteTodo = () => {
+    this.props.deleteTodo(this.state.todo);
+  }
 
   render() {
     return (
@@ -34,6 +37,7 @@ class App extends React.Component {
         <h1>To-Do List Redux Edition</h1>
         <Todos
           todos = {this.props.todos}
+          deleteTodo = {this.deleteTodo}
         />
         <TodoForm
           todo = {this.state.todo} 
@@ -51,4 +55,4 @@ const mapStateToProps = state => {
   };
 }
 
-export default connect(mapStateToProps, {addTodo}) (App);
+export default connect(mapStateToProps, {addTodo, deleteTodo}) (App);

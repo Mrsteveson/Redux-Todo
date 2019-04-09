@@ -6,15 +6,18 @@ const Todos = props => {
     return(
         <div>
             {props.todos.map(todo => (
-                 <li
+                 <p
                 className = {todo.completed ? 'finished' : 'todoText'}
                 onClick = {() => props.completeTodo(todo.id)}
                 key = {todo.id}
                 >
                  {todo.text}
                  {/* {todo.completed} */}
-                </li>
+                 <button onClick = {() => props.deleteTodo(props.todos.id)}>X</button>
+                </p>
+                
             ))}
+            <button onClick = {() => props.deleteTodo(props.todos.id)}>X</button>
         </div>
     )
 }

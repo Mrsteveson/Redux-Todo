@@ -1,4 +1,4 @@
-import { ADD_TODO, COMPLETE_TODO } from '../actions';
+import { ADD_TODO, COMPLETE_TODO, DELETE_TODO } from '../actions';
 
 const initialState = {
     todos: [
@@ -36,14 +36,22 @@ export const reducer = (state = initialState, action) => {
         case COMPLETE_TODO:
             return {
                 ...state,
-                todos: state.todos.map((todo, id) => {
-                    if (id === action.payload) {
-                        todo.completed = !todo.completed
-                        return todo;
+                todos: state.todos.map((todo) => {
+                    if (todo.id === action.payload) {
+                        return {
+                            ...todo,
+                            completed: !todo.completed
+                        }
                     } else {
                         return todo;
                     }
                 })
+            }
+        
+        case DELETE_TODO:
+            return {
+                ...state,
+                todos: state.todos.filter(todo => todo.completed === false)
             }
 
         default:
