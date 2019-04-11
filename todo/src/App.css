@@ -1,0 +1,12 @@
+.App {
+  text-align: center;
+}
+
+.finished {
+  text-decoration: line-through;
+  color: crimson;
+}
+
+/* .todoText {
+  color: magenta;
+} */
